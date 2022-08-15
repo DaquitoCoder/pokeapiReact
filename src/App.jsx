@@ -7,6 +7,7 @@ import SearchBar from './components/SearchBar';
 import Pagination from './components/Pagination';
 
 function App() {
+  // Loading state of the Pokemons and the pagination
   const [pokemon, setPokemon] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,23 +31,20 @@ function App() {
   const currentPokemon = pokemon.slice(indexOfFirstPokemon, indexOfLastPokemon);
 
   const paginate = (number) => setCurrentPage(number);
-  
 
   return (
     <div className='App'>
       <Navbar />
       <div className='container-fluid mb-3'>
-        <div className='searchSection'>
-          <SearchBar></SearchBar>
-        </div>
+        <SearchBar />
         <div className='carousel container'>
           <Pokemon posts={currentPokemon} loading={loading} />
+          <Pagination
+            postsPerPage={pokemonPerPage}
+            totalPosts={pokemon.length}
+            paginate={paginate}
+          />
         </div>
-        <Pagination
-          postsPerPage={pokemonPerPage}
-          totalPosts={pokemon.length}
-          paginate={paginate}
-        />
       </div>
     </div>
   );
