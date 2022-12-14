@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Pokemon = ({ posts, loading, input}) => {
+const Pokemon = ({ posts, loading }) => {
   if (loading) {
     return (
-      <div class='d-flex align-items-center'>
+      <div className='d-flex align-items-center'>
         <strong>Loading...</strong>
         <div
-          class='spinner-border ms-auto'
+          className='spinner-border ms-auto'
           role='status'
           aria-hidden='true'
         ></div>
@@ -20,11 +20,10 @@ const Pokemon = ({ posts, loading, input}) => {
       acc[idx] = [...(acc[idx] || []), x];
       return acc;
     }, []);
-
   return (
     <>
       {group(posts, 4).map((children) => (
-        <div className='row m-3'>
+        <div className='row m-3' key={group(posts, 4).id}>
           {children.map((children) => (
             <div
               className='col-sm-12 col-md-6 col-lg-3'

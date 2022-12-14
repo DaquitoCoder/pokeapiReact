@@ -11,7 +11,7 @@ function App() {
   const [pokemon, setPokemon] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonPerPage] = useState(12);
+  const [pokemonPerPage, setpokemonPerPage] = useState(12);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,19 +26,40 @@ function App() {
     fetchData();
   }, []);
 
+  const paginate = (number) => setCurrentPage(number);
+
+  // Search Bar
+  const [search, setSearch] = useState('');
+
+  let inputHandler = (e) => {
+    let lowercase = e.target.value.toLowerCase();
+    setSearch(lowercase);
+  };
+
+  const filteredPokemon = pokemon.filter((el) => {
+    if (search === '') {
+      return el;
+    }
+    //return the item which contains the user input
+    else {
+      return el.name.toLowerCase().includes(search);
+    }
+  });
+
   const indexOfLastPokemon = currentPage * pokemonPerPage;
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage;
-  const currentPokemon = pokemon.slice(indexOfFirstPokemon, indexOfLastPokemon);
-
-  const paginate = (number) => setCurrentPage(number);
+  const currentPokemon = filteredPokemon.slice(
+    indexOfFirstPokemon,
+    indexOfLastPokemon
+  );
 
   return (
     <div className='App'>
       <Navbar />
       <div className='container-fluid mb-3'>
-        <SearchBar />
+        <SearchBar onChange={inputHandler} />
         <div className='carousel container'>
-          <Pokemon posts={currentPokemon} loading={loading} />
+          <Pokemon posts={currentPokemon} loading={loading}/>
           <Pagination
             postsPerPage={pokemonPerPage}
             totalPosts={pokemon.length}
