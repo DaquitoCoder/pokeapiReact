@@ -26,7 +26,7 @@ function PokemonDetailed() {
   const statSpAttack = pokemon.stats?.[3].base_stat;
   const statSpDefense = pokemon.stats?.[4].base_stat;
   const statSpeed = pokemon.stats?.[5].base_stat;
-  
+
   if (loading) {
     return (
       <div className='d-flex align-items-center'>
@@ -40,7 +40,6 @@ function PokemonDetailed() {
     );
   }
 
-
   return (
     <>
       <div className='container-pokemon'>
@@ -51,7 +50,9 @@ function PokemonDetailed() {
             alt={pokemon.name}
           />
           <div className='card-body'>
-            <h4 className='card-title'>{name.toUpperCase()}</h4>
+            <h4 className='card-title'>
+              {pokemon.name?.charAt(0).toUpperCase() + '' + pokemon.name?.slice(1)}
+            </h4>
             <div className='skills'>
               <h5>Skills</h5>
               <div className='skills-bar'>
