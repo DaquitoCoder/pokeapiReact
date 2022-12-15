@@ -1,3 +1,13 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+}
+
 .carousel{
   display: flex;
   justify-content: center;
@@ -23,4 +33,25 @@
 
 .search-bar .search-input::placeholder{
   color: #fff;
+}
+
+.container-pokemon {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.pokemon .card-title{
+  text-align: center;
+}
+
+.pokemon .skills h5 {
+  text-align: center;
+}
+
+@media screen and (min-width: 425px) {
+  .pokemon{
+    width: 400px;
+  }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Pokemon = ({ posts, loading }) => {
   if (loading) {
@@ -46,9 +47,7 @@ const Pokemon = ({ posts, loading }) => {
                     Some quick example text to build on the card title and make
                     up the bulk of the card's content.
                   </p>
-                  <a href='#' className='btn btn-primary'>
-                    Revisa este pokemon
-                  </a>
+                  <Link to={`/pokemon/${children.name}`} className='btn btn-primary'>Revisa ese pokemon</Link>
                 </div>
               </div>
             </div>
